@@ -1,0 +1,2 @@
+- BADEP Inc. \<https://www.badep.ca\>
+  - Khalid Hazam
