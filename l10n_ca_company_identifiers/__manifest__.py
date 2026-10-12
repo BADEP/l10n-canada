@@ -2,8 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Canada - Company Identifiers",
-    "summary": "Canadian business identifiers (NEQ, BN, federal corporation "
-    "number, Revenu Québec ID) on companies",
+    "summary": "Canadian business identifiers (NEQ, federal corporation "
+    "number) on companies",
     "version": "20.0.1.0.0",
     "category": "Localization",
     "website": "https://github.com/OCA/l10n-canada",
