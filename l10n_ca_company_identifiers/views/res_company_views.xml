@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="res_company_form_inherit_l10n_ca_ids" model="ir.ui.view">
+    <record id="res_company_form_inherit_l10n_ca_company_identifiers" model="ir.ui.view">
         <field name="name">res.company.form.inherit.l10n.ca.ids</field>
         <field name="model">res.company</field>
         <field name="inherit_id" ref="base.view_company_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='identifiers']" position="after">
-                <field name="l10n_ca_neq" invisible="country_code != 'CA'" />
+                <field name="l10n_ca_state_code" invisible="1" />
+                <field
+                    name="l10n_ca_neq"
+                    invisible="country_code != 'CA' or l10n_ca_state_code != 'QC'"
+                />
                 <field
                     name="l10n_ca_corp_number"
                     invisible="country_code != 'CA'"
                 />
                 <field name="l10n_ca_bn" invisible="country_code != 'CA'" />
-                <field name="l10n_ca_rq_id" invisible="country_code != 'CA'" />
+                <field
+                    name="l10n_ca_rq_id"
+                    invisible="country_code != 'CA' or l10n_ca_state_code != 'QC'"
+                />
             </xpath>
         </field>
     </record>
