@@ -1,6 +1,6 @@
 Adds the Canadian business identifiers of *your own company* that `l10n_ca`
 and Odoo do not cover. They are real stored (searchable) fields on the company,
-validated and normalized on save:
+validated on save:
 
 | Field | Issuer | Format | Shown |
 |---|---|---|---|
