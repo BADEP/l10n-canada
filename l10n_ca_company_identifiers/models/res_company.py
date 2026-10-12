@@ -2,8 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import re
 
-from stdnum.ca import bn as ca_bn
-
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -19,26 +17,11 @@ def _normalize_neq(value):
     return number
 
 
-def _normalize_bn(value):
-    """9-digit CRA Business Number (without the program account suffix)."""
-    number = _digits(value)
-    if len(number) != 9:
-        raise ValueError
-    return ca_bn.validate(number)
-
-
 def _normalize_corp_number(value):
     match = re.fullmatch(r"(\d{7})(\d)", _digits(value))
     if not match:
         raise ValueError
     return f"{match.group(1)}-{match.group(2)}"
-
-
-def _normalize_rq_id(value):
-    number = _digits(value)
-    if not re.fullmatch(r"\d{10}", number):
-        raise ValueError
-    return number
 
 
 class ResCompany(models.Model):
@@ -58,21 +41,6 @@ class ResCompany(models.Model):
         help="Corporation number issued by Corporations Canada (CBCA), "
         "e.g. 1234567-8.",
     )
-    l10n_ca_bn = fields.Char(
-        string="BN",
-        copy=False,
-        index="btree_not_null",
-        help="9-digit Business Number issued by the Canada Revenue Agency. "
-        "The GST/HST account (BN + RT 0001) goes in the Tax ID field.",
-    )
-    l10n_ca_rq_id = fields.Char(
-        string="Revenu Québec ID",
-        copy=False,
-        index="btree_not_null",
-        help="10-digit Revenu Québec identification number (NI), shared by the "
-        "IC, RS and TQ files. The QST account (NI + TQ 0001) goes in the "
-        "PST number field.",
-    )
 
     l10n_ca_state_code = fields.Char(
         related="state_id.code", string="Province Code", readonly=True
@@ -83,8 +51,6 @@ class ResCompany(models.Model):
         return {
             "l10n_ca_neq": _normalize_neq,
             "l10n_ca_corp_number": _normalize_corp_number,
-            "l10n_ca_bn": _normalize_bn,
-            "l10n_ca_rq_id": _normalize_rq_id,
         }
 
     @api.model

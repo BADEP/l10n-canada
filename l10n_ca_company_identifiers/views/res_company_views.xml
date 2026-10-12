@@ -15,11 +15,6 @@
                     name="l10n_ca_corp_number"
                     invisible="country_code != 'CA'"
                 />
-                <field name="l10n_ca_bn" invisible="country_code != 'CA'" />
-                <field
-                    name="l10n_ca_rq_id"
-                    invisible="country_code != 'CA' or l10n_ca_state_code != 'QC'"
-                />
             </xpath>
         </field>
     </record>
