@@ -74,6 +74,10 @@ class ResCompany(models.Model):
         "PST number field.",
     )
 
+    l10n_ca_state_code = fields.Char(
+        related="state_id.code", string="Province Code", readonly=True
+    )
+
     @api.model
     def _l10n_ca_id_normalizers(self):
         return {
